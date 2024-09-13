@@ -1,0 +1,71 @@
+.pixelify-sans-font {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+
+* {
+    box-sizing: border-box;
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+
+.buttonsContainer {                       /* container buttons are in*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+    height: 100%;
+}
+
+
+button {
+    height: 50px;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 10px
+}
+.exitSettings {
+    height: auto;
+    width: auto;
+}
+
+#settingsPage {
+    height: 300px;
+    width: 600px;
+    background-color: rgb(0, 0, 0);
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid white;
+    border-radius: 20px;
+    
+}
+
+/* #interiorSettings {
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 75%;
+    width: 75%;
+    border: 10px solid white;
+    border-radius: 10px;
+} */
+
+.popoff {
+    visibility: hidden;
+}
+
+.popup {
+    visibility: visible ;
+ 
+}
