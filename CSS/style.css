@@ -5,7 +5,7 @@
   font-style: normal;
 }
 
-
+/* --------------------All-------------------------- */
 * {
     box-sizing: border-box;
     font-family: "Pixelify Sans", sans-serif;
@@ -13,17 +13,82 @@
 
 html, body {
     margin: 0;
+    /* height: 100%; */
+}
+/* --------------------All-------------------------- */
+
+
+
+
+
+/* --------------------GAMEPAGE-------------------------- */
+
+#gamepage {
     height: 100%;
+    width: 100%;
+    background-color: white;
+    border: 5px solid black;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
 }
 
 
+
+.grid {
+
+    width: 1425px;
+    height: 1025px;
+    border: 1px solid black;
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+    
+
+.cell {
+    border: 1px solid black;
+    
+    row-gap: 0;
+}
+
+
+
+
+
+/* --------------------GAMEPAGE-------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+/* --------------------HOMEPAGE-------------------------- */
+
+
+
+
+
+
 .buttonsContainer {                       /* container buttons are in*/
+    position: relative;
+    top: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 50px;
-    height: 100%;
+    height: auto;
+
 }
 
 
@@ -33,33 +98,80 @@ button {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    margin: 10px
-}
-.exitSettings {
-    height: auto;
-    width: auto;
+    margin: 10px;
 }
 
+
+
+
+
+
+
+
+/* --------------------HOMEPAGE-------------------------- */
+
+#homepage h1 {
+    position: relative;
+    font-size: 100px;
+    top: 300px;
+    text-align: center;
+    
+}
+
+
+
+
+/* --------------------SETTINGS-------------------------- */
+
+
+/* ----Big Container------*/
 #settingsPage {
     height: 300px;
     width: 600px;
     background-color: rgb(0, 0, 0);
-    position: fixed;
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     border: 5px solid white;
     border-radius: 20px;
+    z-index: 2;
     
 }
+/* ----- */
+#buttonBox {
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
+    height: 15%;
+    margin: 10px;
+}
 
-/* #interiorSettings {
-    background-color: rgba(0, 0, 0, 0.7);
-    height: 75%;
-    width: 75%;
-    border: 10px solid white;
-    border-radius: 10px;
-} */
+.exitSettings {
+    height: auto;
+    width: auto;
+
+}
+
+
+.homeButton {
+    height: auto;
+    width: auto;
+}
+/* ----- */
+
+
+#settingsPage h2 {
+    color: white;
+    position: absolute;
+    left: 50%;
+    top:10%;
+    transform: translate(-50%, -50%);
+}
+
+
 
 .popoff {
     visibility: hidden;
@@ -69,3 +181,6 @@ button {
     visibility: visible ;
  
 }
+
+
+/* --------------------SETTINGS-------------------------- */
