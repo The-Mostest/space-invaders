@@ -46,7 +46,7 @@ html, body {
     transform: translate(-50%);
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
+    
 }
     
 
@@ -129,6 +129,7 @@ button {
     height: 300px;
     width: 600px;
     background-color: rgb(0, 0, 0);
+    color: white;
     position: absolute;
     display: flex;
     flex-wrap: wrap;
@@ -159,6 +160,22 @@ button {
 .homeButton {
     height: auto;
     width: auto;
+}
+
+#settingsContent{
+    height: 14rem;
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.colorBox {
+    height: 25px;
+    width: 25px;
+    align-self ;
+    
+    background-color: white;
 }
 /* ----- */
 

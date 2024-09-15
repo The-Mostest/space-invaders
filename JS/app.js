@@ -3,7 +3,7 @@
 
 // Elemet Cache
 const settingsPage = document.querySelector('#settingsPage')
-const settingsButEl = document.querySelector('.settingsBut') 
+const settingsButEl = document.querySelectorAll('.settingsBut') 
 const exitSet = document.querySelector('.exitSettings')
 const gameBut = document.querySelector('#gameButton')
 const gamePage = document.querySelector('#gamepage')
@@ -68,8 +68,10 @@ const homeBut = () => {
 
 
 // Event Listener
+settingsButEl.forEach((setbut1) => {
+    setbut1.addEventListener('click', settingPopUp);
+})
 
-settingsButEl.addEventListener('click', settingPopUp);
 exitSet.addEventListener('click', settingPopUp);
 gameBut.addEventListener('click', startGame);
 homeButtonEl.addEventListener('click', homeBut);
