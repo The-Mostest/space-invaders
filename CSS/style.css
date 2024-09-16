@@ -75,9 +75,10 @@ html, body {
 /* --------------------HOMEPAGE-------------------------- */
 
 
+#homepage {
+    background-image: url("/Users/finnmcdougall/code/GA/Projects/Unit-1-Space-Invaders/Images/Strip And GIF/space2_4-frames.png");
 
-
-
+}
 
 .buttonsContainer {                       /* container buttons are in*/
     position: relative;
@@ -105,11 +106,6 @@ button {
 
 
 
-
-
-
-/* --------------------HOMEPAGE-------------------------- */
-
 #homepage h1 {
     position: relative;
     font-size: 100px;
@@ -117,6 +113,11 @@ button {
     text-align: center;
     
 }
+
+
+
+/* --------------------HOMEPAGE-------------------------- */
+
 
 
 
@@ -173,8 +174,6 @@ button {
 .colorBox {
     height: 25px;
     width: 25px;
-    align-self ;
-    
     background-color: white;
 }
 /* ----- */
