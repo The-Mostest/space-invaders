@@ -40,7 +40,7 @@ html, body {
 
     width: 1425px;
     height: 1025px;
-    border: 1px solid black;
+    box-shadow: 2px 2px 50px black ;
     position: fixed;
     left: 50%;
     transform: translate(-50%);
@@ -56,7 +56,9 @@ html, body {
     row-gap: 0;
 }
 
-
+.enemy {
+    background-color: green;
+}
 
 
 
@@ -75,10 +77,8 @@ html, body {
 /* --------------------HOMEPAGE-------------------------- */
 
 
-#homepage {
-    background-image: url("/Users/finnmcdougall/code/GA/Projects/Unit-1-Space-Invaders/Images/Strip And GIF/space2_4-frames.png");
 
-}
+
 
 .buttonsContainer {                       /* container buttons are in*/
     position: relative;

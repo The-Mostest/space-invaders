@@ -10,16 +10,19 @@ const gamePage = document.querySelector('#gamepage')
 const homeButtonEl = document.querySelector('.homeButton')
 const grid = document.querySelector('.grid')
 
-console.dir(settingsButEl)
+
 
 // Const
 
-
-
+let enemyPosition = [1,2,58,59];
 const cellStore = []
 
 
-// Grid Creation
+
+
+
+
+// -------------------------- Grid Creation START ------------------------------
 
 const width = 57;
 const height = 41;
@@ -29,13 +32,23 @@ let totalCells = width * height
 for (i = 0; i < totalCells; i++) {
     const cellEl = document.createElement('div')
     cellEl.id = i
-    // cellEl.innerText = i
+    cellEl.innerText = i
+    cellEl.style.fontSize = '10px'
     cellEl.classList.add('cell')
     cellEl.style.height = `${100 / height}%`
     cellEl.style.width = `${100 / width}%`
     cellStore.push(cellEl)
     grid.appendChild(cellEl);
 }
+
+
+
+
+// -------------------------- Grid Creation END ------------------------------
+
+
+
+
 
 
 
@@ -48,6 +61,7 @@ for (i = 0; i < totalCells; i++) {
 
 
 //  Functions
+
 const settingPopUp = () => {
     settingsPage.classList.toggle('popup')
     if (settingsPage.classList == 'popup') {
@@ -64,6 +78,10 @@ const homeBut = () => {
     gamePage.classList.remove('popup');
 
 }
+
+
+
+
 
 
 
