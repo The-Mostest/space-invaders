@@ -105,58 +105,81 @@ const addPlayerPosition = () => {
 })
 }
 
+
 const playerMovement = (evt) => {
 
     removePlayerPosition(); 
-    
-    const hasHitWall = playerPosition.some(position => evt.code === 'ArrowRight' && position % width === width -1)
 
 
-    if (evt.code === 'ArrowRight' && playerPosition[i] % width !== width -1) {
-                playerPosition[i]++
-            } else { hasHitWall
+    const canMove = playerPosition.every(singlePos => {
+        return (evt.code === 'ArrowRight' && singlePos % width !== width -1) || (evt.code === 'ArrowLeft' && singlePos % width !== 0)
+    })
 
-    }if (evt.code === 'ArrowLeft' && playerPosition[i] % width !== 0){
-                playerPosition[i]--
+
+
+    if(canMove) {
+        for(let i = 0; i < playerPosition.length; i++)
+                { if (evt.code === 'ArrowRight') {
+                    playerPosition[i]++
+                } else if (evt.code === 'ArrowLeft') {
+                    playerPosition[i]--} 
+                }
             }
-
+            addPlayerPosition();
+        }
     
-    addPlayerPosition();
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const removeEnemyPosition = () => {
+    enemyPosition.forEach((position) => {
+        cellStore[position].classList.remove('enemy')
+})
 }
 
 
-console.log(playerPosition)
+const addEnemyPosition = () => {
+    enemyPosition.forEach((position) => {
+        cellStore[position].classList.add('enemy')
+})
+}
 
 
+const enemyMovement = (evt) => {
+
+    removeEnemyPosition(); 
 
 
+    const enemyCanMove = enemyPosition.every(singlePos => {
+        return (singlePos % width !== width -1) || (singlePos % width !== 0)
+        })
+    }
 
 
-
-
-
-
-// const removeEnemyPos = () => {
-//     enemyPosition.forEach((position) => {
-//         cellStore[position].classList.remove('enemy')
-//     })
-// }
-
-
-// const addEnemyPos = () => {
-//     enemyPosition.forEach((position) => {
-//         cellStore[position].classList.add('enemy')
-//     })
-// }
-
-
-// const enemyMovement = () => {
-//     if(cellStore ==='') {
-//         enemyPosition.id ++
-//     }
-// }
-
+    if(enemyCanMove) {
+        for(let i = 0; i < enemyPosition.length; i++){
+             if(singlePos % width !== 0){
+                enemyPosition[i] + width;
+                enemyPosition[i]--
+             }   }
+            
+            addEnemyPosition();
+        }
 
 
 
@@ -215,3 +238,25 @@ document.addEventListener('keydown', playerMovement)
 //     }}
     
 //     addPlayerPosition();
+
+
+
+
+
+
+
+
+// const enemyCanMove = enemyPosition.every(singlePos => {
+//     return (singlePos % width !== width -1) || (singlePos % width !== 0)
+// })
+
+
+
+// if(enemyCanMove) {
+//     for(let i = 0; i < enemyPosition.length; i++)
+//             { if () {
+//                 playerPosition[i]++
+//             } else if (evt.code === 'ArrowLeft') {
+//                 playerPosition[i]--} 
+//             }
+//         }
