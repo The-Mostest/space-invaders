@@ -15,13 +15,12 @@ const grid = document.querySelector('.grid')
 
 // Const
 
-let enemyPosition = [25, 26, 27, 28, 29, 30, 31, 32, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 250, 251, 252,  255, 256, 257, 258,  261, 262, 263, 306, 307, 308, 309, 312, 313, 314, 315,  318, 319, 320, 321, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 420, 421, 422, 423, 424, 425, 426, , 429, 430, 431, 432, 433, 434, 435, 477, 478, 479, 480, 481, 482, 483, 486, 487, 488, 489, 490, 491, 492, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 546, 547, 548, 593, 594, 595, 596, 597, 598, 599, 600, 601, 602, 603, 604, 651,652,655,656,659,660,708,709,712,713,716,717,766,765,769,770,773,774]
 
-  
+
 
 
 const cellStore = []
-
+let enemyPosition = [25, 26, 27, 28, 29, 30, 31, 32, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 250, 251, 252,  255, 256, 257, 258,  261, 262, 263, 306, 307, 308, 309, 312, 313, 314, 315,  318, 319, 320, 321, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 420, 421, 422, 423, 424, 425, 426,429, 430, 431, 432, 433, 434, 435, 477, 478, 479, 480, 481, 482, 483, 486, 487, 488, 489, 490, 491, 492, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 546, 547, 548, 593, 594, 595, 596, 597, 598, 599, 600, 601, 602, 603, 604, 651,652,655,656,659,660,708,709,712,713,716,717,766,765,769,770,773,774]
 
 
 
@@ -80,9 +79,7 @@ const settingPopUp = () => {
     }
 }
 
-const startGame = () => {
-    gamePage.classList.toggle('popup')
-}
+
 
 const homeBut = () => {
     settingsPage.classList.toggle('popup')
@@ -91,30 +88,48 @@ const homeBut = () => {
 }
 
 
-const addEnemyPos = () => {
-    cellStore[enemyPosition].classList.add('enemy')
-}
+
 
 const removeEnemyPos = () => {
-    cellStore[enemyPosition].classList.remove('enemy')
+    enemyPosition.forEach((position) => {
+        cellStore[position].classList.remove('enemy')
+    })
 }
 
 
-
-let enemyTimer = () => {
-    removeEnemyPos();
-    setInterval(() => {
-        
-    }, 1000);
+const addEnemyPos = () => {
+    enemyPosition.forEach((position) => {
+        cellStore[position].classList.add('enemy')
+    })
 }
 
 
+    // setInterval(enemyMovement, 1000)
+
+
+const enemyTimer = () => {
+   removeEnemyPos()
+   enemyPosition.forEach((position) => {
+       if(position % width !== width -1){
+        position++
+       }
+
+   })
+   addEnemyPos;
+}
+setInterval(enemyTimer,1000);
+
+console.dir(enemyPosition)
 
 
 
 
 
 
+
+const startGame = () => {
+    gamePage.classList.toggle('popup')
+}
 
 
 
@@ -126,5 +141,5 @@ settingsButEl.forEach((setbut1) => {
 })
 
 exitSet.addEventListener('click', settingPopUp);
-gameBut.addEventListener('click', startGame);
+gameBut.addEventListener('click', startGame,);
 homeButtonEl.addEventListener('click', homeBut);
