@@ -60,7 +60,9 @@ html, body {
     background-color: green;
 }
 
-
+.player {
+    background-color: red;
+}
 
 /* --------------------GAMEPAGE-------------------------- */
 
