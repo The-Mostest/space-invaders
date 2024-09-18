@@ -46,7 +46,7 @@ let totalCells = width * height;
 for (i = 0; i < totalCells; i++) {
   const cellEl = document.createElement("div");
   cellEl.id = i;
-  cellEl.innerText = i;
+//   cellEl.innerText = i;
   cellEl.style.fontSize = "10px";
   cellEl.classList.add("cell");
   cellEl.style.height = `${100 / height}%`;
@@ -175,7 +175,7 @@ const gameOver = () => {
 };
 
 const startEnemyMovement = () => {
-  enemyInterval = setInterval(enemyMovement, 1000);
+  enemyInterval = setInterval(enemyMovement, 100);
 };
 
 // ------------------ ENEMY MOVEMENT END ---------------------------------
