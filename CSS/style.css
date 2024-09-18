@@ -64,6 +64,15 @@ html, body {
     background-color: red;
 }
 
+.base {
+    background-color: lightslategray;
+}
+
+#gamepage .gameover {
+    background-color: black;
+    visibility: ;
+    z-index: 2;
+}
 /* --------------------GAMEPAGE-------------------------- */
 
 
