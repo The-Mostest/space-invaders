@@ -83,6 +83,10 @@ const homeBut = () => {
   gameOverScreen.classList.remove("popup");
 };
 
+
+
+// -------------------------- PLayer MOving ------------------------------
+
 const removePlayerPosition = () => {
   playerPosition.forEach((position) => {
     cellStore[position].classList.remove("player");
@@ -116,7 +120,28 @@ const playerMovement = (evt) => {
   }
   addPlayerPosition();
 };
+// -------------------------- PLayer MOving end ------------------------------
+
+
 // -------------------------- Functions END ------------------------------
+
+// -------------------------- Missiles Shooting ------------------------------
+
+const playerShooting = (evt) => {
+    if(evt.code === 'Space') {
+      playerMissile.classList.add('playerMissile')
+      if(playerPosition[0]) {
+        playerMissile = playerPosition[0] - width
+      }
+    }
+}
+
+
+
+
+
+
+// -------------------------- Missiles Shooting end---------------------------
 
 // ------------------ ENEMY MOVEMENT ---------------------------------
 
@@ -234,3 +259,6 @@ gameBut.addEventListener("click", startGame);
 resetButton.addEventListener("click", resetting);
 
 document.addEventListener("keydown", playerMovement);
+
+//shooting
+document.addEventListener("keydown", playerShooting)
