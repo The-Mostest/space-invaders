@@ -7,222 +7,183 @@
 
 /* --------------------All-------------------------- */
 * {
-    box-sizing: border-box;
-    font-family: "Pixelify Sans", sans-serif;
+  box-sizing: border-box;
+  font-family: "Pixelify Sans", sans-serif;
 }
 
-html, body {
-    margin: 0;
-    /* height: 100%; */
+html,
+body {
+  margin: 0;
+  /* height: 100%; */
 }
 /* --------------------All-------------------------- */
-
-
-
-
 
 /* --------------------GAMEPAGE-------------------------- */
 
 #gamepage {
-    height: 100%;
-    width: 100%;
-    background-color: white;
-    border: 5px solid black;
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    bottom: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url("..//css/media/SpaceBackgroundandGIF/space3_4-frames.png");
+  border: 5px solid black;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
 }
-
-
 
 .grid {
-
-    width: 1425px;
-    height: 1025px;
-    box-shadow: 2px 2px 50px black ;
-    position: fixed;
-    left: 50%;
-    transform: translate(-50%);
-    display: flex;
-    flex-wrap: wrap;
-    
+  width: 1425px;
+  height: 1025px;
+  box-shadow: 2px 2px 50px black;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%);
+  display: flex;
+  flex-wrap: wrap;
 }
-    
 
 .cell {
-    border: 1px solid black;
-    
-    row-gap: 0;
+  border: 1px solid black;
+
+  row-gap: 0;
 }
 
 .enemy {
-    background-color: green;
+  background-color: yellow;
 }
 
 .player {
-    background-color: red;
+  background-color: green;
 }
 
 .base {
-    background-color: lightslategray;
+  background-color: lightslategray;
 }
 
 #gamepage .gameover {
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    background-color: black;
-    color: white;
-    font-size: 60px;
-    z-index: 4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    /* visibility: visible; */
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-color: black;
+  color: white;
+  font-size: 60px;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* visibility: visible; */
 }
 
 #reset {
-    height: 40px;
-    width: 400px;
-    font-size: 30px;
+  height: 40px;
+  width: 400px;
+  font-size: 30px;
 }
+
+.enemyMissile {
+  background-color: red;
+}
+
+.playerMissile {
+  background-color: blue;
+}
+
 /* --------------------GAMEPAGE-------------------------- */
 
-
-
-
-
-
-
-
-
-
-
 /* --------------------HOMEPAGE-------------------------- */
 
-
-
-
-
-.buttonsContainer {                       /* container buttons are in*/
-    position: relative;
-    top: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 50px;
-    height: auto;
-
+.buttonsContainer {
+  /* container buttons are in*/
+  position: relative;
+  top: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 50px;
+  height: auto;
 }
-
 
 button {
-    height: 50px;
-    width: 100px;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    margin: 10px;
+  height: 50px;
+  width: 100px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 10px;
 }
-
-
-
-
 
 #homepage h1 {
-    position: relative;
-    font-size: 100px;
-    top: 300px;
-    text-align: center;
-    
+  position: relative;
+  font-size: 100px;
+  top: 300px;
+  text-align: center;
 }
 
-
-
 /* --------------------HOMEPAGE-------------------------- */
-
-
-
-
 
 /* --------------------SETTINGS-------------------------- */
 
-
 /* ----Big Container------*/
 #settingsPage {
-    height: 300px;
-    width: 600px;
-    background-color: rgb(0, 0, 0);
-    color: white;
-    position: absolute;
-    display: flex;
-    flex-wrap: wrap;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border: 5px solid white;
-    border-radius: 20px;
-    z-index: 2;
-    
+  height: 300px;
+  width: 600px;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 5px solid white;
+  border-radius: 20px;
+  z-index: 2;
 }
 /* ----- */
 #buttonBox {
-    display: flex;
-    justify-content: space-between;
-    width: inherit;
-    height: 15%;
-    margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: inherit;
+  height: 15%;
+  margin: 10px;
 }
 
 .exitSettings {
-    height: auto;
-    width: auto;
-
+  height: auto;
+  width: auto;
 }
 
-
-.homeButton {
-    height: auto;
-    width: auto;
-}
-
-#settingsContent{
-    height: 14rem;
-    width: inherit;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+#settingsContent {
+  height: 14rem;
+  width: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 .colorBox {
-    height: 25px;
-    width: 25px;
-    background-color: white;
+  height: 25px;
+  width: 25px;
+  background-color: white;
 }
 /* ----- */
 
-
 #settingsPage h2 {
-    color: white;
-    position: absolute;
-    left: 50%;
-    top:10%;
-    transform: translate(-50%, -50%);
+  color: white;
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%, -50%);
 }
 
-
-
 .popoff {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .popup {
-    visibility: visible ;
- 
+  visibility: visible;
 }
-
 
 /* --------------------SETTINGS-------------------------- */
