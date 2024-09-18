@@ -69,9 +69,24 @@ html, body {
 }
 
 #gamepage .gameover {
+    height: 100%;
+    width: 100%;
+    position: fixed;
     background-color: black;
-    visibility: ;
-    z-index: 2;
+    color: white;
+    font-size: 60px;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* visibility: visible; */
+}
+
+#reset {
+    height: 40px;
+    width: 400px;
+    font-size: 30px;
 }
 /* --------------------GAMEPAGE-------------------------- */
 

@@ -7,6 +7,10 @@ const gamePage = document.querySelector("#gamepage");
 const homeButtonEl = document.querySelector(".homeButton");
 const grid = document.querySelector(".grid");
 const gameOverScreen = document.querySelector(".gameover");
+const resetButton = document.querySelector('#reset')
+const enemyCells = document.querySelectorAll('.enemy')
+const playerCells = document.querySelectorAll('.player')
+
 
 // Const
 
@@ -58,10 +62,15 @@ for (i = 0; i < totalCells; i++) {
 
 // Variables
 
+
+
+
+
+
+
+
+
 //  Functions
-const gameOverPopUp = () => {
-  gameOverScreen.classList.toggle("popup");
-};
 
 const settingPopUp = () => {
   settingsPage.classList.toggle("popup");
@@ -73,7 +82,12 @@ const settingPopUp = () => {
 const homeBut = () => {
   settingsPage.classList.toggle("popup");
   gamePage.classList.remove("popup");
+  gameOverScreen.classList.remove("popup");
 };
+
+
+
+
 
 const removePlayerPosition = () => {
   playerPosition.forEach((position) => {
@@ -150,29 +164,62 @@ const enemyMovement = () => {
       enemyDirection = 1;
     }
   }
-  addEnemyPosition();                                              
+  addEnemyPosition();
+
   cellStore.forEach((cell) => {
     if (cell.classList.contains("enemy") && cell.classList.contains("player")) {
-      gameOverPopUp();
+      gameOver();
     }
   });
 };
 
-const startEnemyMovement = () => {
-  setInterval(enemyMovement, 0);
+const gameOver = () => {
+  gameOverScreen.classList.add("popup");
+ 
+  clearInterval(enemyInterval);
 };
 
-const gameOver = () => {};
+const startEnemyMovement = () => {
+  enemyInterval = setInterval(enemyMovement, 0);
+};
 
 // ------------------ ENEMY MOVEMENT END ---------------------------------
+
+const resetting = () => {
+    document.querySelectorAll('.enemy').forEach(cell => cell.classList.remove('enemy'))
+    document.querySelectorAll('.player').forEach(cell => cell.classList.remove('player'))
+
+    enemyCells.forEach((cells) => {cells.classList.remove('enemy')})
+    playerCells.forEach((cells) => {cells.classList.remove('player')})
+
+    enemyPosition = [
+        25, 26, 27, 28, 29, 30, 31, 32, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90,
+        91, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 193, 194, 195,
+        196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 250, 251, 252, 255,
+        256, 257, 258, 261, 262, 263, 306, 307, 308, 309, 312, 313, 314, 315, 318,
+        319, 320, 321, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374,
+        375, 376, 377, 378, 420, 421, 422, 423, 424, 425, 426, 429, 430, 431, 432,
+        433, 434, 435, 477, 478, 479, 480, 481, 482, 483, 486, 487, 488, 489, 490,
+        491, 492, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 546, 547,
+        548, 593, 594, 595, 596, 597, 598, 599, 600, 601, 602, 603, 604, 651, 652,
+        655, 656, 659, 660, 708, 709, 712, 713, 716, 717, 766, 765, 769, 770, 773,
+        774,
+      ];
+      
+    playerPosition = [2191, 2193, 2195, 2249, 2250, 2251, 2305, 2309];
+
+    settingsPage.classList.remove('popup')
+    gamePage.classList.remove('popup')
+    gameOverScreen.classList.remove("popup");
+}
 
 // ------------------- Collision -----------------------------------------
 
 // ------------------- Collision -----------------------------------------
 
 const startGame = () => {
-  gamePage.classList.toggle("popup");
-  startEnemyMovement();
+    gamePage.classList.toggle("popup");
+    startEnemyMovement();
 };
 
 // Event Listener
@@ -183,5 +230,7 @@ settingsButEl.forEach((setbut1) => {
 exitSet.addEventListener("click", settingPopUp);
 gameBut.addEventListener("click", startGame);
 homeButtonEl.addEventListener("click", homeBut);
+
+resetButton.addEventListener('click', resetting)
 
 document.addEventListener("keydown", playerMovement);
