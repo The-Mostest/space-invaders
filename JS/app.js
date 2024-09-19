@@ -129,9 +129,9 @@ const playerMovement = (evt) => {
 
 const playerShooting = (evt) => {
 
+    let playerMissile = playerPosition[1] - width;
   
     const playerMissileSpawn = () => {
-        let playerMissile = playerPosition[1] - width;
         if(cellStore[playerMissile]){
             cellStore[playerMissile].classList.add('playerMissile')
         }
@@ -144,20 +144,26 @@ const playerShooting = (evt) => {
     }
 
      const findNewPos = () => {
-        if(playerMissileRemove){
-            cellStore[playerMissile] -= width
-        }
+        if (playerMissile !== null) { 
+            playerMissileRemove();
+            playerMissile -= width;
+            if (playerMissile >= 0 && cellStore[playerMissile]) 
+                cellStore[playerMissile].classList.add('playerMissile');
+            } else {
+                playerMissile = null;
+            }
      }
 
+
     if (evt.code === "Space") {
-        playerMissileRemove();
-        playerMissileSpawn();
-        // setInterval(playerMissileRemove, 1000)
+        playerMissileSpawn()
+        setInterval(findNewPos, 100)
         
     }
 };
 
 
+// }
 
 // -------------------------- Missiles Shooting end---------------------------
 
@@ -227,7 +233,7 @@ const gameOver = () => {
 };
 
 const startEnemyMovement = () => {
-  enemyInterval = setInterval(enemyMovement, 100);
+  enemyInterval = setInterval(enemyMovement, 0);
 };
 
 // ------------------ ENEMY MOVEMENT END ---------------------------------
@@ -285,4 +291,4 @@ resetButton.forEach((resetBut) => {
 document.addEventListener("keydown", playerMovement);
 
 //shooting
-document.addEventListener("keydown", playerShooting);
+document.addEventListener("keyup", playerShooting);
