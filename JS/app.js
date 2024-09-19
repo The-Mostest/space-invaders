@@ -7,7 +7,7 @@ const gamePage = document.querySelector("#gamepage");
 const homeButtonEl = document.querySelector(".homeButton");
 const grid = document.querySelector(".grid");
 const gameOverScreen = document.querySelector(".gameover");
-const resetButton = document.querySelector("#reset");
+const resetButton = document.querySelectorAll(".reset");
 
 
 
@@ -46,7 +46,7 @@ let totalCells = width * height;
 for (i = 0; i < totalCells; i++) {
   const cellEl = document.createElement("div");
   cellEl.id = i;
-//   cellEl.innerText = i;
+  cellEl.innerText = i;
   cellEl.style.fontSize = "10px";
   cellEl.classList.add("cell");
   cellEl.style.height = `${100 / height}%`;
@@ -127,15 +127,22 @@ const playerMovement = (evt) => {
 
 // -------------------------- Missiles Shooting ------------------------------
 
-const playerShooting = (evt) => {
-    if(evt.code === 'Space') {
-      playerMissile.classList.add('playerMissile')
-      if(playerPosition[0]) {
-        playerMissile = playerPosition[0] - width
-      }
-    }
+const playerMissileSpawn = () => {
+    playerMissile = playerPosition[1] - width;
+
+    cellStore.forEach((cell, idx) => {
+        if( idx === playerMissile) {
+            cell.classList.add('playerMissile')
+        }
+    })
 }
 
+
+const playerShooting = (evt) => {
+    if(evt.code === 'Space') {
+      playerMissileSpawn();
+    }
+}
 
 
 
@@ -234,6 +241,7 @@ const resetting = () => {
   settingsPage.classList.remove("popup");
   gamePage.classList.remove("popup");
   gameOverScreen.classList.remove("popup");
+  clearInterval(enemyInterval);
 };
 
 // --------------------Reset Button End---------------------------------------
@@ -256,7 +264,9 @@ settingsButEl.forEach((setbut1) => {
 exitSet.addEventListener("click", settingPopUp);
 gameBut.addEventListener("click", startGame);
 
-resetButton.addEventListener("click", resetting);
+resetButton.forEach((resetBut) => {
+    resetBut.addEventListener("click", resetting)
+});
 
 document.addEventListener("keydown", playerMovement);
 

@@ -37,3 +37,17 @@ Game Page
 Grid Creation
 Adding in the settings button
 Understanding how to move coloured cells on setInterval as an array
+
+Shooting -
+    On spacebar, have a block spawn right above the player sprite and 'shoot' up the map until it comes into contant with the enemy
+
+    spacebar click
+        document.addEventListener("keydown", playerShooting)
+
+    spawn object
+    
+    player[i] -= width
+    
+    decrease width for rows
+    
+    when 2 classes are present 'enemy/missile' delete that array block
