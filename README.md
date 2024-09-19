@@ -31,7 +31,7 @@ An animated background
 
 Settings Page
 The settings page will have both the volume controls and colour pickers for the player
-The pop up is small as it only needs to encompass the 2 settings selectors  q
+The pop up is small as it only needs to encompass the 2 settings selectors  
 
 Game Page
 Grid Creation
@@ -45,7 +45,7 @@ Shooting -
         document.addEventListener("keydown", playerShooting)
 
     spawn object
-    
+
     player[i] -= width
     
     decrease width for rows

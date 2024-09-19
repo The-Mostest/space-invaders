@@ -9,11 +9,6 @@ const grid = document.querySelector(".grid");
 const gameOverScreen = document.querySelector(".gameover");
 const resetButton = document.querySelectorAll(".reset");
 
-
-
-
-
-
 // Const
 
 const cellStore = [];
@@ -34,8 +29,8 @@ let enemyPosition = [
 
 let playerPosition = [2191, 2193, 2195, 2249, 2250, 2251, 2305, 2309];
 
-let enemyMissile = []
-let playerMissile = []
+let enemyMissile = [];
+let playerMissile = [];
 
 // -------------------------- Grid Creation START ------------------------------
 
@@ -61,7 +56,6 @@ for (i = 0; i < totalCells; i++) {
 
   cellStore.push(cellEl);
   grid.appendChild(cellEl);
-  
 }
 
 // -------------------------- Grid Creation END ------------------------------
@@ -82,8 +76,6 @@ const homeBut = () => {
   gamePage.classList.remove("popup");
   gameOverScreen.classList.remove("popup");
 };
-
-
 
 // -------------------------- PLayer MOving ------------------------------
 
@@ -122,33 +114,61 @@ const playerMovement = (evt) => {
 };
 // -------------------------- PLayer MOving end ------------------------------
 
-
 // -------------------------- Functions END ------------------------------
+
+
+
+
+
+
+
+
 
 // -------------------------- Missiles Shooting ------------------------------
 
-const playerMissileSpawn = () => {
-    playerMissile = playerPosition[1] - width;
-
-    cellStore.forEach((cell, idx) => {
-        if( idx === playerMissile) {
-            cell.classList.add('playerMissile')
-        }
-    })
-}
-
 
 const playerShooting = (evt) => {
-    if(evt.code === 'Space') {
-      playerMissileSpawn();
+
+  
+    const playerMissileSpawn = () => {
+        let playerMissile = playerPosition[1] - width;
+        if(cellStore[playerMissile]){
+            cellStore[playerMissile].classList.add('playerMissile')
+        }
+    };
+    
+    const playerMissileRemove = () => {
+        if(cellStore[playerMissile]){
+            cellStore[playerMissile].classList.remove('playerMissile')
+        }
     }
-}
 
+     const findNewPos = () => {
+        if(playerMissileRemove){
+            cellStore[playerMissile] -= width
+        }
+     }
 
+    if (evt.code === "Space") {
+        playerMissileRemove();
+        playerMissileSpawn();
+        // setInterval(playerMissileRemove, 1000)
+        
+    }
+};
 
 
 
 // -------------------------- Missiles Shooting end---------------------------
+
+
+
+
+
+
+
+
+
 
 // ------------------ ENEMY MOVEMENT ---------------------------------
 
@@ -214,11 +234,8 @@ const startEnemyMovement = () => {
 
 // --------------------Reset Button---------------------------------------
 const resetting = () => {
-
-  removeEnemyPosition()
-  removePlayerPosition()
-
-
+  removeEnemyPosition();
+  removePlayerPosition();
 
   enemyPosition = [
     25, 26, 27, 28, 29, 30, 31, 32, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90,
@@ -236,23 +253,20 @@ const resetting = () => {
 
   playerPosition = [2191, 2193, 2195, 2249, 2250, 2251, 2305, 2309];
 
-  addEnemyPosition()
-  addPlayerPosition()
+  addEnemyPosition();
+  addPlayerPosition();
   settingsPage.classList.remove("popup");
   gamePage.classList.remove("popup");
   gameOverScreen.classList.remove("popup");
   clearInterval(enemyInterval);
+  
 };
 
 // --------------------Reset Button End---------------------------------------
 
-// ------------------- Missile -----------------------------------------
-
-// ------------------- Missile End-----------------------------------------
-
 const startGame = () => {
   gamePage.classList.toggle("popup");
-//   resetting()
+  //   resetting()
   startEnemyMovement();
 };
 
@@ -265,10 +279,10 @@ exitSet.addEventListener("click", settingPopUp);
 gameBut.addEventListener("click", startGame);
 
 resetButton.forEach((resetBut) => {
-    resetBut.addEventListener("click", resetting)
+  resetBut.addEventListener("click", resetting);
 });
 
 document.addEventListener("keydown", playerMovement);
 
 //shooting
-document.addEventListener("keydown", playerShooting)
+document.addEventListener("keydown", playerShooting);
