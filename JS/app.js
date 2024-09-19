@@ -116,65 +116,49 @@ const playerMovement = (evt) => {
 
 // -------------------------- Functions END ------------------------------
 
-
-
-
-
-
-
-
-
 // -------------------------- Missiles Shooting ------------------------------
 
-
 const playerShooting = (evt) => {
+  let playerMissile = playerPosition[1] - width;
 
-    let playerMissile = playerPosition[1] - width;
-  
-    const playerMissileSpawn = () => {
-        if(cellStore[playerMissile]){
-            cellStore[playerMissile].classList.add('playerMissile')
-        }
-    };
-    
-    const playerMissileRemove = () => {
-        if(cellStore[playerMissile]){
-            cellStore[playerMissile].classList.remove('playerMissile')
-        }
+  const playerMissileSpawn = () => {
+    if (cellStore[playerMissile]) {
+      cellStore[playerMissile].classList.add("playerMissile");
     }
+  };
 
-     const findNewPos = () => {
-        if (playerMissile !== null) { 
-            playerMissileRemove();
-            playerMissile -= width;
-            if (playerMissile >= 0 && cellStore[playerMissile]) 
-                cellStore[playerMissile].classList.add('playerMissile');
-            } else {
-                playerMissile = null;
-            }
-     }
-
-
-    if (evt.code === "Space") {
-        playerMissileSpawn()
-        setInterval(findNewPos, 100)
-        
+  const playerMissileRemove = () => {
+    if (cellStore[playerMissile]) {
+      cellStore[playerMissile].classList.remove("playerMissile");
     }
+  };
+
+  const findNewPos = () => {
+    if (playerMissile !== null) {
+      playerMissileRemove();
+      playerMissile -= width;
+      if (playerMissile >= 0 && cellStore[playerMissile])
+        cellStore[playerMissile].classList.add("playerMissile");
+    } else {
+      playerMissile = null;
+    }
+  };
+
+ 
+  cellStore.forEach((cell,i) => {
+    if (cell.classList.contains("playerMissile") && cell.classList.contains("enemyPosition")){
+        enemyPosition.splice(i,1);
+        // playerMissile.splice(i, 1);
+    }})
+
+  if (evt.code === "Space") {
+    playerMissileSpawn();
+    setInterval(findNewPos, 100);
+  }
 };
 
 
-// }
-
 // -------------------------- Missiles Shooting end---------------------------
-
-
-
-
-
-
-
-
-
 
 // ------------------ ENEMY MOVEMENT ---------------------------------
 
@@ -233,7 +217,7 @@ const gameOver = () => {
 };
 
 const startEnemyMovement = () => {
-  enemyInterval = setInterval(enemyMovement, 0);
+  enemyInterval = setInterval(enemyMovement, 100);
 };
 
 // ------------------ ENEMY MOVEMENT END ---------------------------------
@@ -265,7 +249,6 @@ const resetting = () => {
   gamePage.classList.remove("popup");
   gameOverScreen.classList.remove("popup");
   clearInterval(enemyInterval);
-  
 };
 
 // --------------------Reset Button End---------------------------------------
