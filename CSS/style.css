@@ -48,6 +48,8 @@ body {
   /* row-gap: 0; */
 }
 
+
+
 .enemy {
   background-color: yellow;
 }
@@ -61,8 +63,9 @@ body {
 }
 
 #gamepage .gameover {
-  height: 100%;
+  height:inherit;
   width: 100%;
+  top: 0%;
   position: fixed;
   background-color: black;
   color: white;
