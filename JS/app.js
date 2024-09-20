@@ -312,8 +312,9 @@ resetButton.forEach((resetBut) => {
 document.addEventListener("keydown", playerMovement);
 document.addEventListener("keyup", playerShooting);
 
-
+backgroundMusic.volume = 0.01;
 volumeSlider.addEventListener("click", () => {
+  backgroundMusic.volume = volumeSlider.value;
   explosionSound.volume = volumeSlider.value;
   shootSound.volume = volumeSlider.value;
-});backgroundMusic.volume = 0.01
+});
