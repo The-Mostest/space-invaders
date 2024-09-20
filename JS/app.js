@@ -12,6 +12,8 @@ const volumeSlider = document.querySelector("#volumeSlider");
 const backgroundMusic = document.querySelector("#backgroundMusic");
 const winScreen = document.querySelector(".gameWin");
 const scoreBoard = document.querySelectorAll(".score");
+const musicButton = document.querySelector('#playMusic')
+
 
 // Const
 
@@ -297,7 +299,7 @@ resetButton.forEach((resetBut) => {
 document.addEventListener("keydown", playerMovement);
 document.addEventListener("keydown", playerShooting);
 
-backgroundMusic.volume = 0.01;
+
 explosionSound.volume = 0.01;
 shootSound.volume = 0.01;
 volumeSlider.addEventListener("click", () => {
@@ -305,3 +307,7 @@ volumeSlider.addEventListener("click", () => {
   explosionSound.volume = volumeSlider.value;
   shootSound.volume = volumeSlider.value;
 });
+
+musicButton.addEventListener('click', () => {
+  backgroundMusic.play();
+})
