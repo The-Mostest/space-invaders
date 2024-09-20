@@ -168,7 +168,7 @@ const playerShooting = (evt) => {
       if (enemyPosition.length === 0){
         gameWin()
       }
-    }, 0);
+    }, 100);
   }
 
 };
@@ -245,7 +245,7 @@ const gameOver = () => {
 };
 
 const startEnemyMovement = () => {
-  enemyInterval = setInterval(enemyMovement, 0);
+  enemyInterval = setInterval(enemyMovement, 100);
 };
 
 cellStore.forEach((cell) => {
