@@ -10,6 +10,8 @@ const gameOverScreen = document.querySelector(".gameover");
 const resetButton = document.querySelectorAll(".reset");
 const volumeSlider = document.querySelector("#volumeSlider");
 const backgroundMusic = document.querySelector("#backgroundMusic");
+const winScreen = document.querySelector(".gameWin");
+const scoreBoard = document.querySelectorAll(".score");
 
 // Const
 
@@ -18,17 +20,7 @@ const cellStore = [];
 //Variables
 
 let enemyPosition = [
-  25, 26, 27, 28, 29, 30, 31, 32, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90,
-  91, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 193, 194, 195,
-  196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 250, 251, 252, 255,
-  256, 257, 258, 261, 262, 263, 306, 307, 308, 309, 312, 313, 314, 315, 318,
-  319, 320, 321, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374,
-  375, 376, 377, 378, 420, 421, 422, 423, 424, 425, 426, 429, 430, 431, 432,
-  433, 434, 435, 477, 478, 479, 480, 481, 482, 483, 486, 487, 488, 489, 490,
-  491, 492, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 546, 547,
-  548, 593, 594, 595, 596, 597, 598, 599, 600, 601, 602, 603, 604, 651, 652,
-  655, 656, 659, 660, 708, 709, 712, 713, 716, 717, 766, 765, 769, 770, 773,
-  774,
+  25, 26, 27, 28, 29, 30, 
 ];
 
 let playerPosition = [2191, 2193, 2195, 2249, 2250, 2251, 2305, 2309];
@@ -37,7 +29,7 @@ let enemyMissile = [];
 
 let shootSound = new Audio("CSS/Media/Audio/SFX/Shooting.mov");
 
-let score 
+let score = 0;
 
 // -------------------------- Grid Creation START ------------------------------
 
@@ -82,6 +74,17 @@ const homeBut = () => {
   gameOverScreen.classList.remove("popup");
 };
 
+const gameWin = () => {
+  winScreen.classList.add('popup')
+}
+
+const scoreUpdate = () => {
+  score += 100
+  scoreBoard.forEach((board)=> {
+    board.innerHTML = score
+  })
+}
+
 // -------------------------- Functions END ------------------------------
 
 // -------------------------- PLayer Moving ------------------------------
@@ -121,6 +124,7 @@ const playerMovement = (evt) => {
 };
 // -------------------------- PLayer MOving end ------------------------------
 
+
 // -------------------------- Missiles Shooting ------------------------------
 
 const playerShooting = (evt) => {
@@ -138,21 +142,32 @@ const playerShooting = (evt) => {
       }
 
       if (cellStore[missilePosition].classList.contains("enemy")) {
-        console.log("Collision is working");
         cellStore[missilePosition].classList.remove("enemy");
         clearInterval(missileTravel);
 
         let indexToRemove = enemyPosition.indexOf(missilePosition);
         if (indexToRemove !== -1) {
           enemyPosition.splice(indexToRemove, 1);
+          scoreUpdate();
         }
         return;
       }
       cellStore[missilePosition].classList.add("playerMissile");
+      if (enemyPosition.length === 0){
+        gameWin()
+      }
     }, 50);
-    score += 100
   }
+
 };
+
+
+// -------------------------------------------------------------------
+
+
+
+
+
 
 // -------------------------- Missiles Shooting end---------------------------
 
@@ -206,6 +221,15 @@ const enemyMovement = () => {
   });
 };
 
+// cellStore.forEach((cell) => {
+//   if (!cell.classList.includes('enemy')){
+//     gameWin();
+//   }
+// })
+
+
+
+
 const gameOver = () => {
   gameOverScreen.classList.add("popup");
 
@@ -216,9 +240,15 @@ const startEnemyMovement = () => {
   enemyInterval = setInterval(enemyMovement, 100);
 };
 
+cellStore.forEach((cell) => {
+  if (cell[enemyPosition] === null) {
+    console.log("enemydead");
+  }
+});
+
 // ------------------ ENEMY MOVEMENT END ---------------------------------
 
-// -  - - - - -  - - - - - - - Audio
+
 
 // --------------------Reset Button---------------------------------------
 const resetting = () => {
@@ -270,7 +300,7 @@ resetButton.forEach((resetBut) => {
 });
 
 document.addEventListener("keydown", playerMovement);
-document.addEventListener("keydown", playerShooting);
+document.addEventListener("keyup", playerShooting);
 
 volumeSlider.addEventListener("click", () => {
   backgroundMusic.volume = volumeSlider.value;
