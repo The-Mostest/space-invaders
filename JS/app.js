@@ -11,7 +11,6 @@ const resetButton = document.querySelectorAll(".reset");
 const volumeSlider = document.querySelector("#volumeSlider");
 const backgroundMusic = document.querySelector("#backgroundMusic");
 
-
 // Const
 
 const cellStore = [];
@@ -36,7 +35,9 @@ let playerPosition = [2191, 2193, 2195, 2249, 2250, 2251, 2305, 2309];
 
 let enemyMissile = [];
 
-let shootSound = new Audio("CSS/Media/Audio/SFX/PlayerShooting.mp3") 
+let shootSound = new Audio("CSS/Media/Audio/SFX/Shooting.mov");
+
+let score 
 
 // -------------------------- Grid Creation START ------------------------------
 
@@ -133,35 +134,24 @@ const playerShooting = (evt) => {
 
       if (missilePosition < 0) {
         clearInterval(missileTravel);
-        cellStore[missilePosition].classList.remove("playerMissile");
+        return;
       }
 
-      // * If the missile hits the alien it should explode and destroy the alien and itself
-      //   - If the cell at `missilePosition` contains both the `missile` and `enemy` class then identify a collision
-      //     > to find the cell at `missilePosition` we will target it using cellStore[missilePosition]
-      //     > Then we will use classList.contains to identify whether the missile and enemy classes are present
-      if (
-        cellStore[missilePosition].classList.contains("enemy") &&
-        cellStore[missilePosition].classList.contains("playerMissile")
-      ) {
+      if (cellStore[missilePosition].classList.contains("enemy")) {
         console.log("Collision is working");
         cellStore[missilePosition].classList.remove("enemy");
-        cellStore[missilePosition].classList.remove("playerMissile");
-      }
+        clearInterval(missileTravel);
 
-      let indexToRemove = enemyPosition.indexOf(missilePosition);
-      if (indexToRemove !== -1) {
-        enemyPosition.splice(indexToRemove, 1);
+        let indexToRemove = enemyPosition.indexOf(missilePosition);
+        if (indexToRemove !== -1) {
+          enemyPosition.splice(indexToRemove, 1);
+        }
+        return;
       }
-
       cellStore[missilePosition].classList.add("playerMissile");
-    }, 10);
-    //     > if they are we want to:
-    //       - remove both classes from the cell (enemy and missile)
-    //       - remove the `missilePosition` from the alien array
-    //       - add 100 to the `score` variable
+    }, 50);
+    score += 100
   }
-  
 };
 
 // -------------------------- Missiles Shooting end---------------------------
