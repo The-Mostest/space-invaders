@@ -23,8 +23,8 @@ body {
 #gamepage {
   height: 100%;
   width: 100vw;
-  background-image: url(./CSS/Media/SpaceBackgroundandGif/GIF_4FPS/background2.gif);
   background-color: white;
+  background-image: url('../CSS/Media/SpaceBackgroundandGif/GIF_4FPS/background2.gif');
   /* border: 5px solid black; */
   position: fixed;
   z-index: 1;
