@@ -168,7 +168,7 @@ const playerShooting = (evt) => {
       if (enemyPosition.length === 0){
         gameWin()
       }
-    }, 10);
+    }, 0);
   }
 
 };
@@ -245,7 +245,7 @@ const gameOver = () => {
 };
 
 const startEnemyMovement = () => {
-  enemyInterval = setInterval(enemyMovement, 100);
+  enemyInterval = setInterval(enemyMovement, 0);
 };
 
 cellStore.forEach((cell) => {
@@ -310,9 +310,11 @@ resetButton.forEach((resetBut) => {
 });
 
 document.addEventListener("keydown", playerMovement);
-document.addEventListener("keyup", playerShooting);
+document.addEventListener("keydown", playerShooting);
 
 backgroundMusic.volume = 0.01;
+explosionSound.volume= 0.01;
+shootSound.volume= 0.01;
 volumeSlider.addEventListener("click", () => {
   backgroundMusic.volume = volumeSlider.value;
   explosionSound.volume = volumeSlider.value;
