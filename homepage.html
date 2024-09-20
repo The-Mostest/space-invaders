@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
-       </style>
+    </style>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +13,7 @@
     <script defer src="JS/app.js"></script>
     <title>Document</title>
 </head>
+
 <body>
 
 
@@ -20,10 +21,10 @@
 
 
 
-<!--------------------------GAME------------------------------------->
-<div id="gamepage" class="popoff";>
-    <button class="settingsBut" id="gameSettings"> SETTINGS </button>
-    
+    <!--------------------------GAME------------------------------------->
+    <div id="gamepage" class="popoff" ;>
+        <button class="settingsBut" id="gameSettings"> SETTINGS </button>
+
         <div class="grid">
 
         </div>
@@ -32,16 +33,18 @@
             <h1>GAME OVER</h1>
             <button class="reset">RESET</button>
         </div>
-</div>
-<!--------------------------GAME------------------------------------->
+    </div>
+    <!--------------------------GAME------------------------------------->
 
 
 
 
 
-<!--------------------------SETTINGS------------------------------------->
+    <!--------------------------SETTINGS------------------------------------->
 
     <div id='settingsPage' class="popoff">
+        <!-- <audio id="backgroundMusic" src="./CSS/Media/Audio/Background Music/Space_and_Rockets.mp3" type="audio/mp3" -->
+            autoplay>Your browser doesnt support this audo</audio>
 
         <div id="buttonBox">
             <button class="reset" id="home">HOME</button>
@@ -51,38 +54,43 @@
 
             <h2> Settings</h2>
             <p>VOLUME</p>
-            <input id="volume" type="range" min="0" max="1" value="0.5" step="0.1">
+            <input id="volumeSlider" type="range" min="0" max="1" value="0.5" step="0.1">
 
             <p>PLAYER COLOUR</p>
             <div class="colorBox"></div>
-            
+
 
             <p>ENEMY COLOUR</p>
             <div class="colorBox" id="playercolour"></div>
         </div>
-        
+
     </div>
-<!--------------------------SETTINGS------------------------------------->
+    <!--------------------------SETTINGS------------------------------------->
 
 
 
 
 
+    <!--------------------------HOMEPAGE------------------------------------->
+    <div id="homepage" class="'popoff">
 
-<!--------------------------HOMEPAGE------------------------------------->
-<div id="homepage" class="'popoff">
-    
+        <h1>SPACE INVADERS</h1>
 
-    <h1>SPACE INVADERS</h1>
+        <div class='buttonsContainer'>
+            <button id="gameButton">GAME</button>
+            <button class='settingsBut'>SETTINGS</button>
+        </div>
+        <div class="instructions">
+            <h2>instructions</h2>
+            <p> Left and Right arrow to move</p>
+            <p>Spacebar to shoot</p>
+            <p> dodge the enemy Bombs</p>
+            <p>Destroy The Enemy to Win</p>
+        </div>
 
-    <div class = 'buttonsContainer'>
-        <button id="gameButton">GAME</button>
-        <button class='settingsBut'>SETTINGS</button>              
-        
     </div>
-
-</div>
-<!--------------------------HOMEPAGE------------------------------------->
+    <!--------------------------HOMEPAGE------------------------------------->
 
 </body>
+
 </html>

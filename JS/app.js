@@ -8,6 +8,9 @@ const homeButtonEl = document.querySelector(".homeButton");
 const grid = document.querySelector(".grid");
 const gameOverScreen = document.querySelector(".gameover");
 const resetButton = document.querySelectorAll(".reset");
+const volumeSlider = document.querySelector("#volumeSlider");
+const backgroundMusic = document.querySelector("#backgroundMusic");
+
 
 // Const
 
@@ -33,6 +36,8 @@ let playerPosition = [2191, 2193, 2195, 2249, 2250, 2251, 2305, 2309];
 
 let enemyMissile = [];
 
+let shootSound = new Audio("CSS/Media/Audio/SFX/PlayerShooting.mp3") 
+
 // -------------------------- Grid Creation START ------------------------------
 
 const width = 57;
@@ -42,7 +47,7 @@ let totalCells = width * height;
 for (i = 0; i < totalCells; i++) {
   const cellEl = document.createElement("div");
   cellEl.id = i;
-//   cellEl.innerText = i;
+  //   cellEl.innerText = i;
   cellEl.style.fontSize = "10px";
   cellEl.classList.add("cell");
   cellEl.style.height = `${100 / height}%`;
@@ -118,65 +123,47 @@ const playerMovement = (evt) => {
 // -------------------------- Missiles Shooting ------------------------------
 
 const playerShooting = (evt) => {
-  evt.code === "Space";
-  let missilePosition = playerPosition[1] - width;
+  if (evt.code === "Space") {
+    shootSound.play();
+    let missilePosition = playerPosition[1] - width;
 
+    const missileTravel = setInterval(() => {
+      cellStore[missilePosition].classList.remove("playerMissile");
+      missilePosition -= width;
 
-  // * The missile should automatically go upwards towards the alien
-  //   - The position of the missile is stored in `missilePosition`. We want to move this to the cell above.
-  //     > remove the class of missile from the `missilePosition` cell
+      if (missilePosition < 0) {
+        clearInterval(missileTravel);
+        cellStore[missilePosition].classList.remove("playerMissile");
+      }
 
-  if (cellStore[missilePosition]) {
+      // * If the missile hits the alien it should explode and destroy the alien and itself
+      //   - If the cell at `missilePosition` contains both the `missile` and `enemy` class then identify a collision
+      //     > to find the cell at `missilePosition` we will target it using cellStore[missilePosition]
+      //     > Then we will use classList.contains to identify whether the missile and enemy classes are present
+      if (
+        cellStore[missilePosition].classList.contains("enemy") &&
+        cellStore[missilePosition].classList.contains("playerMissile")
+      ) {
+        console.log("Collision is working");
+        cellStore[missilePosition].classList.remove("enemy");
+        cellStore[missilePosition].classList.remove("playerMissile");
+      }
+
+      let indexToRemove = enemyPosition.indexOf(missilePosition);
+      if (indexToRemove !== -1) {
+        enemyPosition.splice(indexToRemove, 1);
+      }
+
+      cellStore[missilePosition].classList.add("playerMissile");
+    }, 10);
+    //     > if they are we want to:
+    //       - remove both classes from the cell (enemy and missile)
+    //       - remove the `missilePosition` from the alien array
+    //       - add 100 to the `score` variable
   }
-  const missileTravel = setInterval(() => {
-    cellStore[missilePosition].classList.remove("playerMissile");
-    missilePosition -= width;
-
-    if (missilePosition < 0) {
-        // console.log("Out of bounds working");
-        clearInterval(missileTravel)
-        cellStore.forEach((cell) => {
-
-            cell.classList.remove('playerMissile')
-        })
-
-    }
-
-    // * If the missile goes outside of the board, we should remove the missile
-    //   - As the missile rises, if the index becomes negative, it is out of bounds
-    //     > if the new position for the missile is less than 0, it has gone out of bounds
-    //     > Stop the missile interval with clearInterval
-    //     > Ensure the class has been removed from the previous missile position
-    // * If the missile hits the alien it should explode and destroy the alien and itself
-    //   - If the cell at `missilePosition` contains both the `missile` and `enemy` class then identify a collision
-    //     > to find the cell at `missilePosition` we will target it using cellStore[missilePosition]
-    //     > Then we will use classList.contains to identify whether the missile and enemy classes are present
-    cellStore.forEach((cell) => {
-
-        if (
-            cell.classList.contains("enemy") &&
-            cell.classList.contains("playerMissile")
-        ) {
-            cell.classList.remove("enemy") 
-            console.log('Collision is working')
-        }
-        
-    })
-    // let indexToRemove = enemyPosition.indexOf(missilePosition)
-    // if (indexToRemove !== -1){
-    //     enemyPosition.splice(indexToRemove,1)
-    // }
-
-
-    cellStore[missilePosition].classList.add("playerMissile");
-  }, 10 );
-  //     > if they are we want to:
-  //       - remove both classes from the cell (enemy and missile)
-  //       - remove the `missilePosition` from the alien array
-  //       - add 100 to the `score` variable
+  
 };
 
-document.addEventListener("keydown", playerShooting);
 // -------------------------- Missiles Shooting end---------------------------
 
 // ------------------ ENEMY MOVEMENT ---------------------------------
@@ -241,6 +228,8 @@ const startEnemyMovement = () => {
 
 // ------------------ ENEMY MOVEMENT END ---------------------------------
 
+// -  - - - - -  - - - - - - - Audio
+
 // --------------------Reset Button---------------------------------------
 const resetting = () => {
   removeEnemyPosition();
@@ -291,49 +280,8 @@ resetButton.forEach((resetBut) => {
 });
 
 document.addEventListener("keydown", playerMovement);
+document.addEventListener("keydown", playerShooting);
 
-//shooting
-// document.addEventListener("keyup", playerShooting);
-
-// const playerShooting = (evt) => {
-//     let playerMissile = playerPosition[1] - width;
-
-//     const playerMissileSpawn = () => {
-//       if (cellStore[playerMissile]) {
-//         cellStore[playerMissile].classList.add("playerMissile");
-//       }
-//     };
-
-//     const playerMissileRemove = () => {
-//       if (cellStore[playerMissile]) {
-//         cellStore[playerMissile].classList.remove("playerMissile");
-//       }
-//     };
-
-//     const findNewPos = () => {
-//       if (playerMissile !== null) {
-//         playerMissileRemove();
-//         playerMissile -= width;
-//         if (playerMissile >= 0 && cellStore[playerMissile])
-//           cellStore[playerMissile].classList.add("playerMissile");
-//       } else {
-//         playerMissile = null;
-//       }
-//     };
-
-//       const indexToRemove = enemyPosition.indexOf(playerMissile)
-
-//     if (
-//       cellStore[playerMissile].classList.contains("enemy") &&
-//       cellStore[playerMissile].classList.contains("playerMissile")
-//     ) {
-//       console.log('Colliision')
-//       // cellStore[playerMissile].classList.remove("enemy", "playerMissile");
-//       enemyPosition.splice(indexToRemove, 0);
-//     }
-
-//     if (evt.code === "Space") {
-//       playerMissileSpawn();
-//       setInterval(findNewPos, 100);
-//     }
-//   };
+volumeSlider.addEventListener("click", () => {
+  backgroundMusic.volume = volumeSlider.value;
+});
