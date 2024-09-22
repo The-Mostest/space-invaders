@@ -178,7 +178,7 @@ The best thing I've learnt from this project is going to be how to use Psudeocod
 
 
 ### Bugs
-
+When the player clicks reset before the 'player missiles' have left the screen, they still travel and hit the newly generated enemy, causing the next play of the game to start with a enemy that has already lost some pieces.
 
 
 ### Future Improvements
